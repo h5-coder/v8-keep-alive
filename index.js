@@ -1,7 +1,7 @@
 /*
  * @Author       : 梁燕翔 yanxiang.liang@genlot.com
  * @Date         : 2023-06-12 18:17:59
- * @LastEditors  : 梁燕翔 yanxiang.liang@genlot.com
+ * @LastEditors  : lyx lyx123456
  * @Description  : 定制版keepalive
  */
 import Vue from 'vue'
@@ -28,12 +28,25 @@ export const removeCacheByName = (name) => {
   remove(keys, name)
 }
 
-export const emitEvent = data => new CustomEvent(EVENT_NAME, { detail: data });
+export const emitEvent = data => {
+  const evt = new CustomEvent(EVENT_NAME, { detail: data });
+  document.dispatchEvent(evt);
+};
 
+/**
+ * @author       : LiangYanXiang
+ * @description  :
+ * @param         {*} evt {detail:string/array}
+ * @return        {*}
+ */
 const listener = (evt) => {
-  console.log('removeCacheByNameEvent', evt);
-  const { detail: { name } } = evt
-  name && removeCacheByName(name)
+  const { detail } = evt
+  if (!detail) return
+  if (typeof detail === 'string') {
+    removeCacheByName(detail)
+  } else if (Array.isArray(detail) && detail.length) {
+    detail.forEach(i => removeCacheByName(i))
+  }
 }
 
 export default Object.assign({}, Vue.options.components.KeepAlive, {
@@ -47,4 +60,3 @@ export default Object.assign({}, Vue.options.components.KeepAlive, {
     document.removeEventListener(EVENT_NAME, listener)
   },
 })
-
