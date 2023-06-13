@@ -1,0 +1,15 @@
+{
+  "name": "v8-keep-alive",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://10.13.0.176/liangyanxiang/v8-keep-alive"
+  },
+  "author": "liangyanxiang",
+  "license": "ISC"
+}
