@@ -1,7 +1,7 @@
 /*
  * @Author       : 梁燕翔 yanxiang.liang@genlot.com
  * @Date         : 2023-06-12 18:17:59
- * @LastEditors  : lyx lyx123456
+ * @LastEditors  : 梁燕翔 yanxiang.liang@genlot.com
  * @Description  : 定制版keepalive
  */
 import Vue from 'vue'
@@ -56,7 +56,7 @@ export default Object.assign({}, Vue.options.components.KeepAlive, {
     this.keys = keys;
     document.addEventListener(EVENT_NAME, listener);
   },
-  destroyed() {
+  beforeDestroy() {
     document.removeEventListener(EVENT_NAME, listener)
   },
 })
